@@ -1,13 +1,7 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.renderTasks = renderTasks;
-require("core-js/modules/es.array.sort.js");
-require("core-js/modules/web.dom-collections.iterator.js");
-var _toggleDoneStatus = require("./toggleDoneStatus.js");
-var _deleteTask = require("./deleteTask.js");
+import "core-js/modules/es.array.sort.js";
+import "core-js/modules/web.dom-collections.iterator.js";
+import { toggleDoneStatus } from "./toggleDoneStatus.js";
+import { deleteTask } from "./deleteTask.js";
 const list = document.querySelector('.list');
 const createCheckbox = _ref => {
   let {
@@ -19,14 +13,14 @@ const createCheckbox = _ref => {
   checkbox.checked = done;
   checkbox.classList.add('list__item-checkbox');
   checkbox.dataset.taskId = id;
-  checkbox.addEventListener('click', _toggleDoneStatus.toggleDoneStatus);
+  checkbox.addEventListener('click', toggleDoneStatus);
   return checkbox;
 };
 const createDeleteBtn = id => {
   const deleteBtn = document.createElement('button');
   deleteBtn.classList.add('list-item__delete-btn');
   deleteBtn.dataset.taskId = id;
-  deleteBtn.addEventListener('click', _deleteTask.deleteTask);
+  deleteBtn.addEventListener('click', deleteTask);
   return deleteBtn;
 };
 const createListItem = _ref2 => {
@@ -51,9 +45,9 @@ const createListItem = _ref2 => {
   listItemElem.append(checkboxElem, textElem, deleteBtn);
   return listItemElem;
 };
-function renderTasks(tasksList) {
+export function renderTasks(tasksList) {
   const prevCheckboxes = list.querySelectorAll('.list__item-checkbox');
-  prevCheckboxes.forEach(checkbox => checkbox.removeEventListener('click', _toggleDoneStatus.toggleDoneStatus));
+  prevCheckboxes.forEach(checkbox => checkbox.removeEventListener('click', toggleDoneStatus));
   list.innerHTML = '';
   const tasksElements = tasksList.sort((a, b) => a.done - b.done).map(createListItem);
   list.append(...tasksElements);

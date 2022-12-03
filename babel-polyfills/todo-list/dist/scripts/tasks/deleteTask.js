@@ -1,24 +1,16 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.deleteTask = void 0;
-var _api = _interopRequireDefault(require("../common/api.js"));
-var _storage = _interopRequireDefault(require("../common/storage.js"));
-var _renderTasks = require("./renderTasks.js");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const deleteTask = _ref => {
+import api from '../common/api.js';
+import storage from '../common/storage.js';
+import { renderTasks } from "./renderTasks.js";
+export const deleteTask = _ref => {
   let {
     target
   } = _ref;
   const {
     taskId
   } = target.dataset;
-  _api.default.deleteTask(taskId).then(() => {
-    _storage.default.deleteTask(taskId);
-    const tasksList = _storage.default.getTasks();
-    (0, _renderTasks.renderTasks)(tasksList);
+  api.deleteTask(taskId).then(() => {
+    storage.deleteTask(taskId);
+    const tasksList = storage.getTasks();
+    renderTasks(tasksList);
   });
 };
-exports.deleteTask = deleteTask;

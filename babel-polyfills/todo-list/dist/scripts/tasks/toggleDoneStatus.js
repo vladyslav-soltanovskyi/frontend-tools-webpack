@@ -1,14 +1,7 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.toggleDoneStatus = void 0;
-var _api = _interopRequireDefault(require("../common/api.js"));
-var _storage = _interopRequireDefault(require("../common/storage.js"));
-var _renderTasks = require("./renderTasks.js");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const toggleDoneStatus = _ref => {
+import api from '../common/api.js';
+import storage from '../common/storage.js';
+import { renderTasks } from "./renderTasks.js";
+export const toggleDoneStatus = _ref => {
   let {
     target
   } = _ref;
@@ -16,12 +9,11 @@ const toggleDoneStatus = _ref => {
     taskId
   } = target.dataset;
   const done = target.checked;
-  _api.default.updateTask(taskId, {
+  api.updateTask(taskId, {
     done
   }).then(task => {
-    _storage.default.updateTask(taskId, task);
-    const tasksList = _storage.default.getTasks();
-    (0, _renderTasks.renderTasks)(tasksList);
+    storage.updateTask(taskId, task);
+    const tasksList = storage.getTasks();
+    renderTasks(tasksList);
   });
 };
-exports.toggleDoneStatus = toggleDoneStatus;

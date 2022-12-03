@@ -1,23 +1,15 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.createTask = void 0;
-var _api = _interopRequireDefault(require("../common/api.js"));
-var _storage = _interopRequireDefault(require("../common/storage.js"));
-var _renderTasks = require("./renderTasks.js");
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-const createTask = value => {
+import api from '../common/api.js';
+import storage from '../common/storage.js';
+import { renderTasks } from "./renderTasks.js";
+export const createTask = value => {
   if (!value) {
     return;
   }
-  _api.default.createTask({
+  api.createTask({
     text: value
   }).then(task => {
-    _storage.default.createTask(task);
-    const tasksList = _storage.default.getTasks();
-    (0, _renderTasks.renderTasks)(tasksList);
+    storage.createTask(task);
+    const tasksList = storage.getTasks();
+    renderTasks(tasksList);
   });
 };
-exports.createTask = createTask;
