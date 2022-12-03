@@ -1,0 +1,28 @@
+{
+  "name": "plugins",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest -w",
+    "build": "npm run build:styles && npm run build:scripts",
+    "build:scripts": "babel ./src --out-dir=./dist",
+    "build:styles": "sass ./src/styles/index.scss ./dist/styles.css",
+    "copy:html": "cp ./src/index.html ./dist/index.html",
+    "clean": "rm -rf ./dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "jest": "^29.3.1",
+    "sass": "^1.56.1"
+  },
+  "dependencies": {
+    "core-js": "^3.26.1"
+  }
+}
