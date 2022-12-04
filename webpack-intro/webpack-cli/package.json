@@ -1,0 +1,17 @@
+{
+  "name": "webpack-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:scripts": "webpack ./src/index.js -p -o ./dist/main.js",
+    "watch:scripts": "webpack ./src/index.js -d -o ./dist/main.js --devtool eval-source-maps -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
