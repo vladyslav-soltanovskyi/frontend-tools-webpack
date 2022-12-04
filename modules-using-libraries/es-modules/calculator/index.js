@@ -29,7 +29,7 @@ const calc = expression => {
       break;
   }
 
-  return `${expression} = ${result}`;
+  return result;
 };
 
 export default calc;
