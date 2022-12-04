@@ -1,12 +1,15 @@
 export const sum = (a, b) => {
+  console.log('implementation for sum');
   return a + b;
 };
 
 export const mult = (a, b) => {
+  console.log('implementation for mult');
   return a * b;
 };
 
 const calc = expression => {
+  console.log('implementation for calc');
   if (typeof expression !== 'string') {
     return null;
   }
