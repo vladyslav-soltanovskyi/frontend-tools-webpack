@@ -1,6 +1,7 @@
 const path = require("path");
+const isDev = process.argv[process.argv.indexOf('--mode') + 1] === 'development';
 
-module.exports = (_, argv) => ({
+module.exports = {
   entry: {
     profile: './src/profile/index.js',
     dashboard: './src/dashboard/index.js'
@@ -9,6 +10,6 @@ module.exports = (_, argv) => ({
     filename: '[name].js',
     path: path.join(__dirname, 'build'),
   },
-  watch: argv.mode === 'development',
-  devtool: argv.mode === 'development' ? 'eval-source-map' : false
-})
+  watch: isDev,
+  devtool: isDev ? 'eval-source-map' : false
+}
