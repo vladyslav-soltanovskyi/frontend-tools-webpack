@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest -w",
     "build:scripts": "webpack -p",
-    "start": "webpack-dev-server --open -d"
+    "start": "webpack-dev-server --open -d --watch"
   },
   "keywords": [],
   "author": "",
