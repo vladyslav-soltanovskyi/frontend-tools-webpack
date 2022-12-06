@@ -44,8 +44,10 @@ module.exports = (_, argv) => {
       })
     ],
     devServer: {
-      port: 9000
+      port: 9000,
+      hot: true
     },
+    watch: !isProduction,
     devtool: !isProduction ? 'eval-source-map' : false
   }
 
