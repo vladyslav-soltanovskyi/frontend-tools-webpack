@@ -29,9 +29,6 @@ module.exports = {
   output: {
     filename: 'bundle.js',
   },
-  resolve: {
-    extensions: ['.js']
-  },
   module: {
     rules: [
       {
@@ -64,8 +61,7 @@ module.exports = {
   plugins: plugins(),
   devServer: {
     contentBase: path.resolve(__dirname, "dist"),
-    port: 9000,
-    inline: false,
+    port: 9000
   },
   watch: isDev,
   devtool: isDev ? 'eval-source-map' : false
