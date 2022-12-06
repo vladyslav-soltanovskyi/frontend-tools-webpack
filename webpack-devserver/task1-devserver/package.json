@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest -w",
-    "build:scripts": "webpack --mode production",
-    "start": "webpack-dev-server --open --mode development"
+    "build:scripts": "webpack -p",
+    "start": "webpack-dev-server --open -d"
   },
   "keywords": [],
   "author": "",

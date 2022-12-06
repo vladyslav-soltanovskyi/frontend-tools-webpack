@@ -1,66 +1,62 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const isDev = process.argv[process.argv.indexOf('--mode') + 1] === 'development';
+module.exports = (_, argv) => {
+  const isProduction = argv.mode === 'production';
+  const config = {
+    entry: './src/index.js',
+    output: {
+      filename: 'bundle.js',
+    },
+    module: {
+      rules: [
+        {
+          test: /.js$/,
+          use: ['babel-loader']
+        },
+        {
+          test: /.s?css$/,
+          use: [
+            !isProduction ? 'style-loader' : MiniCssExtractPlugin.loader,
+            'css-loader',
+            'sass-loader'
+          ]
+        },
+        {
+          test: /.(png|jpg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                name: '[path][name].[ext]',
+                outputPath: 'images',
+                limit: 8192
+              }
+            }
+          ]
+        },
+      ]
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: 'index.html',
+      })
+    ],
+    devServer: {
+      port: 9000
+    },
+    watch: !isProduction,
+    devtool: !isProduction ? 'eval-source-map' : false
+  }
 
-const plugins = () => {
-  const base = [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-    }),
-    
-  ]
-
-  !isDev && (
-    base.push(
+  isProduction && (
+    config.plugins.push(
       new MiniCssExtractPlugin({
         filename: "[name].css"
       })
     )
   )
 
-  return base
+  return config;
 }
-
-module.exports = () => ({
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-  },
-  module: {
-    rules: [
-      {
-        test: /.js$/,
-        use: ['babel-loader']
-      },
-      {
-        test: /.s?css$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
-        ]
-      },
-      {
-        test: /.(png|jpg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[path][name].[ext]',
-              outputPath: 'images',
-              limit: 8192
-            }
-          }
-        ]
-      },
-    ]
-  },
-  plugins: plugins(),
-  devServer: {
-    port: 9000
-  },
-  watch: isDev,
-  devtool: isDev ? 'eval-source-map' : false
-})
