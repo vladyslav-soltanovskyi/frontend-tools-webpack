@@ -24,8 +24,7 @@
     "babel-loader": "^8.0.5",
     "@babel/core": "^7.3.4",
     "@babel/cli": "^7.19.3",
-    "@babel/preset-env": "^7.20.2",
-    "html-webpack-plugin": "^4.3.0"
+    "@babel/preset-env": "^7.20.2"
   },
   "dependencies": {
     "core-js": "^3.26.1"

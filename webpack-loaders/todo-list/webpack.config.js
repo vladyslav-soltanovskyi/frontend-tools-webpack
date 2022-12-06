@@ -1,5 +1,3 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin'); 
-
 const isDev = process.argv[process.argv.indexOf('--mode') + 1] === 'development';
 
 module.exports = {
@@ -32,13 +30,6 @@ module.exports = {
       },
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      hash: false,
-      template: './src/index.html',
-      filename: 'index.html',
-    }),
-  ],
   watch: isDev,
   devtool: isDev ? 'eval-source-map' : false
 }
