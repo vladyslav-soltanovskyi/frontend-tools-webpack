@@ -24,7 +24,7 @@ const plugins = () => {
   return base
 }
 
-module.exports = {
+module.exports = () => ({
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
@@ -65,4 +65,4 @@ module.exports = {
   },
   watch: isDev,
   devtool: isDev ? 'eval-source-map' : false
-}
+})
